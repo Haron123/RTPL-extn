@@ -183,7 +183,7 @@ void releaseJobs(Vchnl* chnl, int sn )
                    temp.wcet = chnl->numRtx*slotNum;
                    readyQueue.push(temp);
                    chnl->assignedNodes.at(j).nextRel += node.p; 
-                   std::cout << " node " << node.id << << " ready in slotNum " << sn << " next release time " << chnl->assignedNodes.at(j).nextRel  <<"\n" ;
+                   std::cout << " node " << node.id << " ready in slotNum " << sn << " next release time " << chnl->assignedNodes.at(j).nextRel  <<"\n" ;
            }
         }
 
@@ -413,18 +413,16 @@ void printToFile2(bool v)
 }
 
 double DBF_func(LoRaNode node_i, double t)
-
-  {
+ {
   if(t<node_i.p) return 0;
   else
   {
   double act_u = 2/node_i.p;
   return  2 + act_u*(t-node_i.p);//p=di from equation
   }
-
+}
     
 double load_func(const std::vector<LoRaNode>& assignedNodes)
-    
 {
 
           std::vector<double> load(hyperPeriod);
@@ -441,8 +439,7 @@ double load_func(const std::vector<LoRaNode>& assignedNodes)
           return *std::max_element(load.begin(), load.end());
 }
 
-  double utilization_func(std::vector<LoRaNode> assignedNodes)
-
+double utilization_func(std::vector<LoRaNode> assignedNodes)
       {
         double max_u_i =0;
         for (int j=0;j<assignedNodes.size();j++)
